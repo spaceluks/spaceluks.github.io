@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CT Imperium - GFTEAM Sulacap</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="images/images-icon-2.png" type="image/png">
+    <style>
+        /* Estilos personalizados */
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('images/bg-tatame.jpeg');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+        }
+        
+        .gallery-item {
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .modal {
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        
+        .star-rating .star {
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        
+        .star-rating .star:hover {
+            transform: scale(1.2);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #f59e0b;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        #progress-bar {
+            width: 0%;
+            transition: width 10s linear;  /* Anima a barra de progresso em 5 segundos */
+            height: 4px; /* A altura da barra de progresso */
+            background-color: #4caf50; /* Cor da barra */
+        }
+
+    </style>
+</head>
+<body class="smooth-scroll bg-gray-100 font-sans">
+    <!-- Menu de Navegação -->
+    <nav class="fixed w-full bg-gray-900 text-white shadow-lg z-50">
+        <div class="container mx-auto px-6 py-3">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">CT Imperium - Sulacap</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link">Início</a>
+                    <a href="#about" class="nav-link">Sobre</a>
+                    <a href="#gallery" class="nav-link">Galeria</a>
+                    <a href="#reviews" class="nav-link">Avaliações</a>
+                    <a href="#location" class="nav-link">Localização</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                </div>
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            <!-- Menu Mobile -->
+            <div class="md:hidden hidden mt-2" id="mobile-menu">
+                <a href="#home" class="block py-2 px-4 hover:bg-gray-800">Início</a>
+                <a href="#about" class="block py-2 px-4 hover:bg-gray-800">Sobre</a>
+                <a href="#gallery" class="block py-2 px-4 hover:bg-gray-800">Galeria</a>
+                <a href="#reviews" class="block py-2 px-4 hover:bg-gray-800">Avaliações</a>
+                <a href="#location" class="block py-2 px-4 hover:bg-gray-800">Localização</a>
+                <a href="#contact" class="block py-2 px-4 hover:bg-gray-800">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner Hero com Logo -->
+    <section id="home" class="hero flex items-center justify-center pt-20">
+        <div class="container mx-auto px-6 text-center">
+            <!-- Espaço para o logo - pode substituir pela sua imagem -->
+            <div class="mx-auto mb-8 w-60 h-60 bg-white bg-opacity-100 rounded-full flex items-center justify-center backdrop-filter backdrop-blur-sm">
+                <img src="images/images.png" alt="Logo da Equipe" class="w-50 h-50 rounded-full">
+            </div>
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-4">GFTEAM SULACAP</h2>
+            <p class="text-xl md:text-2xl text-gray-300 mb-8">Técnica, Disciplina e Respeito</p>
+            <a href="#contact" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-8 rounded-full transition duration-300 inline-block">Agende uma aula experimental</a>
+        </div>
+    </section>
+
+    <!-- Sobre a Equipe -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Sobre Nossa Equipe</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <img src="images/imagem11.jpg" alt="Equipe de Jiu-Jitsu" class="rounded-lg shadow-xl w-full">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa História</h3>
+                    <p class="text-gray-600 mb-4">Conheça o CT Imperium GFTeam Sulacap, sua nova casa de Jiu-Jítsu na Zona Oeste do Rio de Janeiro!</p>
+                    <p class="text-gray-600 mb-4">Há mais de 10 anos atuando na região, o CT Imperium é filial oficial da GFTeam, referência internacional em técnica e resultados. Aqui, os treinos são conduzidos por quatro faixas-pretas de alto nível: Anderson, Matheus, Leandro e Marcelius, que trazem toda a experiência e a filosofia vencedora da nossa equipe.</p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Por que treinar no CT Imperium GFTeam Sulacap?</h3>
+                    <p class="text-gray-600 mb-4">
+                        •	Estrutura completa: tatames amplos e higienizados, espaço de convivência e vestiários modernos.<br>
+                        •	Aulas para todas as idades: turmas infantis (a partir de 4 anos) e adultos, em níveis iniciantes, intermediários e avançados.<br>
+                        •	Didática premiada: metodologia GFTeam, focada em fundamentos sólidos, progressão segura e preparação física.<br>
+                        •	Histórias de superação: por aqui já passaram campeões mundiais e inúmeros alunos que transformaram suas vidas através do Jiu-Jítsu.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Liderança que faz a diferença</h3>
+                    <p class="text-gray-600 mb-4">
+                        •	Professor Anderson – coach experiente em competições, treinos avançados e treinos técnicos.<br>
+                        •	Professor Matheus – coach referência em treinos para fortalecimento e condicionamento, treino técnico e lúdico.<br>
+                        •	Professor Leandro – professor dos adultos na parte da manhã, treino didático todas as idades.<br>
+                        •	Professor Marcelius – mentor de turmas infantis, reconhecido pela paciência e incentivo.
+                    </p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Nossa Missão</h3>
+                    <p class="text-gray-600 mb-4">
+                        Formar atletas, cidadãos e líderes. Acreditamos que o Jiu-Jítsu vai muito além do tatame: desenvolve disciplina, autoconfiança e resiliência para vencer qualquer desafio na vida.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mt-6">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeria de Fotos -->
+    <section id="gallery" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Galeria</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                <!-- Itens da galeria -->
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="openModal('images/imagem01.jpg')">
+                    <img src="images/imagem01.jpg" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="openModal('images/imagem02.jpg')">
+                    <img src="images/imagem02.jpg" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="openModal('images/imagem13.jpg')">
+                    <img src="images/imagem13.jpg" class="w-full h-48 object-cover">
+                </div>
+                <div class="gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer" onclick="openModal('images/imagem07.jpg')">
+                    <img src="images/imagem07.jpg" class="w-full h-48 object-cover">
+                </div>
+            </div>
+            <div class="text-center mt-8">
+                <button id="load-more" data-expanded="false" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-6 rounded transition duration-300">Carregar mais fotos</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal da Galeria -->
+    <div id="gallery-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 opacity-0 invisible">
+        <div id="modal-content" class="relative max-w-4xl w-full">
+            <button onclick="closeModal()" class="absolute -top-12 right-0 text-white text-3xl hover:text-amber-500">&times;</button>
+            <img id="modal-image" src="" alt="" class="w-full max-h-screen object-contain">
+        </div>
+    </div>
+  
+
+    <!-- Avaliações -->
+    <section id="reviews" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Nossas Avaliações</h2>
+            <div class="text-center mb-12">
+                <div class="star-rating inline-flex mb-4" id="star-rating">
+                    <!-- Estrelas serão preenchidas via JavaScript -->
+                    <span class="star text-3xl mx-1" data-rating="1">☆</span>
+                    <span class="star text-3xl mx-1" data-rating="2">☆</span>
+                    <span class="star text-3xl mx-1" data-rating="3">☆</span>
+                    <span class="star text-3xl mx-1" data-rating="4">☆</span>
+                    <span class="star text-3xl mx-1" data-rating="5">☆</span>
+                </div>
+                <p class="text-gray-600 mb-4">Clique nas estrelas para avaliar no Google</p>
+                <a href="https://g.page/r/CV8787nY4mEjEBM/review" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-6 rounded transition duration-300">
+                    Ver todas as avaliações
+                </a>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-100 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="images/inicialE.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Eduardo Pires</h4>
+                            <div class="text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Excelente CT da GFTEAM. Professores extremamente capacitados, com metodologia nas aulas e participação opcional em campeonatos de Jiu-jitsu. Recomendo!"</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="images/inicialv.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Victoria Cerqueira</h4>
+                            <div class="text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Melhor Jiujitsu do Rio de Janeiro, me apaixonei pelas aulas, os professores são os melhores e os colegas são super respeitosos, super recomendo o Ct Imperium Sulacap!"</p>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-lg shadow">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4 overflow-hidden">
+                            <img src="images/inicialL.jpg" alt="Cliente" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Larissa Barbosa</h4>
+                            <div class="text-amber-500">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Lugar incrível. Tudo organizado! Ótimos profissionais, meu filho evoluiu muito! Corpo, mente, comportamento , e disciplina!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Localização e Mapa -->
+    <section id="location" class="py-20 bg-gray-100">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Nossa Localização</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Como chegar</h3>
+                    <p class="text-gray-600 mb-4">
+                        <i class="fas fa-map-marker-alt text-amber-500 mr-2"></i>
+                        Rua Teodoro Sampaio, 381 - Jardim Sulacap, Rio de Janeiro - RJ, 21741-360
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        <i class="fas fa-clock text-amber-500 mr-2"></i>
+                        Horário de funcionamento:<br>
+                        Segunda, Quarta e Sexta: 7h30 às 9h30 / 20h às 22h <br>
+                        Terça e Quinta: 20h às 22h<br>
+                        Sábado: 10h às 12h<br>
+                        Domingo: Fechado
+                    </p>
+                    <div class="bg-white p-4 rounded-lg shadow mb-4">
+                        <h4 class="font-semibold text-gray-800 mb-2">Estacionamento</h4>
+                        <p class="text-gray-600">Temos estacionamento próprio e estacionamento público para alunos e visitantes, com vagas disponíveis em frente à academia.</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow">
+                        <h4 class="font-semibold text-gray-800 mb-2">Transporte Público</h4>
+                        <p class="text-gray-600">Linhas de ônibus:</p>
+                        <p class="text-gray-600">801 e 803 para quem vem da Taquara.</p>
+                        <p class="text-gray-600">917, 745, 746, 794, 801 e 803 para quem vem de Realengo ou Valqueire.</p>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <!-- Mapa incorporado do Google Maps -->
+                    <div class="h-96 bg-gray-300 rounded-lg shadow-lg overflow-hidden">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3677.620718922652!2d-43.40868582478226!3d-22.87439383763524!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x997c3628dc93cb%3A0xd5e80a53d69d3929!2sR.%20Teodoro%20Sampaio%2C%20381%20-%20Jardim%20Sulacap%2C%20Rio%20de%20Janeiro%20-%20RJ%2C%2021741-360!5e0!3m2!1spt-BR!2sbr!4v1714502828841!5m2!1spt-BR!2sbr" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                    
+                    <div class="mt-4 flex flex-wrap gap-2">
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=R.+Teodoro+Sampaio,+381+-+Jardim+Sulacap,+Rio+de+Janeiro+-+RJ,+21741-360" target="_blank" class="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded text-center transition duration-300">
+                            <i class="fas fa-directions mr-2"></i> Rotas
+                        </a>
+                        <a href="tel:+5521972706035" class="flex-1 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded text-center transition duration-300">
+                            <i class="fas fa-phone-alt mr-2"></i> Ligar
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contact" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-center text-gray-800 mb-12">Entre em Contato</h2>
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Informações de Contato</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="text-amber-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Telefone</h4>
+                                <p class="text-gray-600">(21) 97270-6035</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-amber-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">E-mail</h4>
+                                <p class="text-gray-600">gftsulacap@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-amber-500 text-xl mr-4 mt-1">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">WhatsApp</h4>
+                                <p class="text-gray-600">(21) 97270-6035</p>
+                                <a href="https://wa.me/5521972706035" class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-1 px-3 rounded text-sm mt-1 transition duration-300" target="_blank">
+                                    Enviar mensagem
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="text-amber-500 text-xl mr-4 mt-1">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-800">Horário de Atendimento</h4>
+                                <p class="text-gray-600">Segunda a Sexta: 9h às 18h</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Envie uma Mensagem</h3>
+                    <section id="formulario">
+                        <form id="contact-form" action="https://formsubmit.co/lucasbentorj@gmail.com" method="POST" class="space-y-4">
+                          <!-- Campo de redirecionamento após envio -->
+                          <input type="hidden" name="_next" value="https://ct-imperium.netlify.app/#formulario">
+                      
+                            <!-- Campos do formulário -->
+                            <div>
+                                <label for="name" class="block text-gray-700 mb-2">Nome</label>
+                                <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 mb-2">E-mail</label>
+                                <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                            </div>
+                            <div>
+                                <label for="phone" class="block text-gray-700 mb-2">Telefone</label>
+                                <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                            </div>
+                            <div>
+                                <label for="subject" class="block text-gray-700 mb-2">Assunto</label>
+                                <select id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500">
+                                    <option value="aula">Aula experimental</option>
+                                    <option value="duvida">Dúvida</option>
+                                    <option value="orcamento">Orçamento</option>
+                                    <option value="outro">Outro</option>
+                                </select>
+                            </div>
+                            <div>
+                            <label for="message" class="block text-gray-700 mb-2">Mensagem</label>
+                            <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-500" required></textarea>
+                            </div>
+                            <button type="submit" class="bg-amber-500 hover:bg-amber-600 text-white font-bold py-3 px-6 rounded transition duration-300 w-full">
+                                Enviar Mensagem
+                            </button>
+                        </form>
+                      
+                        <!-- Mensagem de sucesso (inicialmente oculta) -->
+                        <div id="form-success" class="hidden mt-4 p-4 bg-green-100 text-green-700 rounded relative">
+                            Mensagem enviada com sucesso! Entraremos em contato em breve.
+                            <!-- Barra de progresso -->
+                            <div id="progress-bar" class="progress-bar absolute bottom-0 left-0 w-full h-1 bg-green-500"></div>
+                        </div>
+                      </section>                                          
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-center items-center md:items-start md:justify-between text-center md:text-left">
+                <div class="mb-8 md:mb-0 md:mr-8">
+                    <h3 class="text-2xl font-bold mb-2">GFTEAM Sulacap - CT Imperium</h3>
+                    <p class="text-gray-300">Técnica, Disciplina e Respeito</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold text-white mb-4">Redes Sociais</h3>
+                    <a href="https://www.instagram.com/ct.imperium" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center justify-center md:justify-start space-x-2 text-gray-300 hover:text-amber-500 transition duration-300">
+                        <i class="fab fa-instagram text-2xl"></i>
+                        <span class="text-lg">@ct.imperium</span>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-6 mt-10 text-center text-sm text-gray-500">
+                <p>&copy; 2025 CT Imperium - Equipe de Jiu-Jitsu. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+            
+
+    <!-- Botão do WhatsApp Fixo -->
+    <a href="https://wa.me/5521972706035" class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center text-2xl shadow-lg transition duration-300 z-40">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Menu Mobile
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    
+        // Galeria Modal
+        function openModal(imageSrc) {
+            const modal = document.getElementById('gallery-modal');
+            const modalImage = document.getElementById('modal-image');
+            
+            modalImage.src = imageSrc;
+            modal.classList.remove('invisible', 'opacity-0');
+            modal.classList.add('opacity-100', 'visible');
+            document.body.style.overflow = 'hidden';
+        }
+    
+        function closeModal() {
+            const modal = document.getElementById('gallery-modal');
+            
+            modal.classList.remove('opacity-100', 'visible');
+            modal.classList.add('invisible', 'opacity-0');
+            document.body.style.overflow = 'auto';
+        }
+    
+        // Carregar / Recolher fotos
+        const loadMoreButton = document.getElementById('load-more');
+        const galleryContainer = document.querySelector('#gallery .grid');
+            
+        const newPhotos = [
+            { src: 'images/imagem03.jpg' },
+            { src: 'images/imagem04.jpg' },
+            { src: 'images/imagem05.jpg' },
+            { src: 'images/imagem09.jpg' },
+            { src: 'images/imagem10.jpg' },
+            { src: 'images/imagem11.jpg' },
+            { src: 'images/imagem12.jpg' },
+            { src: 'images/imagem13.jpg' },
+            { src: 'images/imagem14.jpg' },
+            { src: 'images/imagem15.jpg' },
+            { src: 'images/imagem16.jpg' },
+            { src: 'images/imagem17.jpg' },
+            { src: 'images/imagem18.jpg' },
+            { src: 'images/imagem19.jpg' },
+            { src: 'images/imagem20.jpg' },
+            { src: 'images/imagem21.jpg' },
+        ];
+            
+        let photosExpanded = false;
+        let addedPhotoElements = [];
+            
+        loadMoreButton.addEventListener('click', () => {
+            if (!photosExpanded) {
+                // Expandir galeria
+                newPhotos.forEach(photo => {
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item rounded-lg overflow-hidden shadow-lg cursor-pointer';
+                    galleryItem.onclick = () => openModal(photo.src.replace('600', '1200'));
+                    
+                    galleryItem.innerHTML = `
+                        <img src="${photo.src}" alt="" class="w-full h-48 object-cover">
+                    `;
+                    
+                    galleryContainer.appendChild(galleryItem);
+                    addedPhotoElements.push(galleryItem);
+                });
+            
+                loadMoreButton.textContent = 'Recolher fotos';
+                loadMoreButton.classList.remove('bg-amber-500', 'hover:bg-amber-600');
+                loadMoreButton.classList.add('bg-gray-600');
+                photosExpanded = true;
+            } else {
+                // Recolher galeria
+                addedPhotoElements.forEach(el => el.remove());
+                addedPhotoElements = [];
+            
+                loadMoreButton.textContent = 'Carregar mais fotos';
+                loadMoreButton.classList.remove('bg-gray-600');
+                loadMoreButton.classList.add('bg-amber-500', 'hover:bg-amber-600');
+                photosExpanded = false;
+            
+                // Rolar suavemente de volta para a seção da galeria
+                document.getElementById('gallery').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        // Fecha o modal ao clicar fora do conteúdo da imagem
+        document.getElementById('gallery-modal').addEventListener('click', function (event) {
+            const modalContent = document.getElementById('modal-content');
+            if (!modalContent.contains(event.target)) {
+                closeModal();
+            }
+        });
+
+    
+        // Avaliação com Estrelas
+        const stars = document.querySelectorAll('.star');
+        const starRating = document.getElementById('star-rating');
+        let currentRating = 5;
+    
+        stars.forEach(star => {
+            star.addEventListener('mouseover', () => {
+                const rating = star.getAttribute('data-rating');
+                highlightStars(rating);
+            });
+            
+            star.addEventListener('mouseout', () => {
+                highlightStars(currentRating);
+            });
+            
+            star.addEventListener('click', () => {
+                currentRating = star.getAttribute('data-rating');
+                window.open('https://g.page/r/CV8787nY4mEjEBM/review', '_blank');
+            });
+
+        });
+    
+        function highlightStars(rating) {
+            stars.forEach(star => {
+                if (star.getAttribute('data-rating') <= rating) {
+                    star.textContent = '★';
+                    star.style.color = '#f59e0b';
+                } else {
+                    star.textContent = '☆';
+                    star.style.color = '#d1d5db';
+                }
+            });
+        }
+    
+        
+        // Formulário de Contato
+        window.addEventListener('DOMContentLoaded', function () {
+          // Verifica se a chave 'form-enviado' existe no LocalStorage
+          const sucesso = localStorage.getItem('form-enviado');
+          const mensagem = document.getElementById('form-success');
+          const progressBar = document.getElementById('progress-bar');
+        
+          // Se a chave 'form-enviado' estiver presente, mostra a mensagem
+          if (sucesso && mensagem) {
+            mensagem.classList.remove('hidden');  // Exibe a mensagem
+            document.getElementById('formulario').scrollIntoView({ behavior: 'smooth' });  // Rola até o formulário
+        
+            // Limpa a chave 'form-enviado' do LocalStorage após mostrar a mensagem
+            localStorage.removeItem('form-enviado');
+        
+            // Inicia a animação da barra de progresso
+            progressBar.style.width = '100%';  // Preenche a barra em 5 segundos
+        
+            // Configura um timeout para esconder a mensagem após 5 segundos
+            setTimeout(function() {
+              mensagem.classList.add('hidden');  // Esconde a mensagem após 5 segundos
+            }, 10000);  // 5000ms = 5 segundos
+          }
+        });
+        // Salva a informação no LocalStorage quando o formulário for enviado
+        document.getElementById('contact-form').addEventListener('submit', function () {
+          localStorage.setItem('form-enviado', 'true');
+        });
+    
+
+        // Scroll suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+    
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>    
+</body>
+</html>
